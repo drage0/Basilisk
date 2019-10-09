@@ -431,6 +431,7 @@ static void
 BAS_DrawRooms(void)
 {
 	register int i;
+	BAS_UseColourAlpha(0, 255, 0, 60);
 	for (i = 0; i < room_count; i++)
 	{
 		const int plan_x = rooms[i].cellposition[0]*CELL_SCALE;
@@ -440,7 +441,6 @@ BAS_DrawRooms(void)
 		rectangle.y = plan_y;
 		rectangle.w = CELL_SCALE;
 		rectangle.h = CELL_SCALE;
-		BAS_UseColourAlpha(0, 255, 0, 60);
 		SDL_RenderFillRect(renderer, &rectangle);
 	}
 }

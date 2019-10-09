@@ -319,16 +319,16 @@ walkrooms(int room_index)
 static void
 BAS_RecalculateLines(void)
 {
-	if (room_count < 0)
+	line_count = 0;
+	if (room_count <= 0)
 	{
-		WRITE_W("room_count < 0, not calculating lines.");
+		WRITE_I("room_count < 0, not calculating lines.");
 		return;
 	}
 	/*
-	 * Set line count and all walked rooms to zero. Afterwards, recursively walk
-	 * through all the rooms.
+	 * Set all walked rooms to zero. Afterwards, recursively walk through all the
+	 * rooms.
 	 */
-	line_count = 0;
 	memset(walkedrooms, 0, sizeof(walkedrooms));
 	walkrooms(0);
 }

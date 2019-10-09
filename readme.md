@@ -2,7 +2,7 @@
 
 ## Description
 
-Basilisk is a software for creating map files to be used by [Wyvern software](https://pages.github.com/).
+Basilisk is a software for creating map files to be used by [Wyvern software](https://github.com/drage0/Wyvern).
 
 ## Features
 

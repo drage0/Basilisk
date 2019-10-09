@@ -713,7 +713,7 @@ static inline void
 thingtool_resetstate(void)
 {
 	thing_seeinfo  = 0;
-	thing_selected = 0;
+	thing_selected = BAS_NO_SUCH_THING;
 }
 static void
 thingtool_updateinfopanel(const int thingindex)

@@ -683,10 +683,18 @@ BAS_Tool_DrawRoom_Draw(int mx, int my)
  * The file format is very simple, here is how it looks (words with $ are variables):
  *
  * Basilisk $version
+ * $CELL_SCALE $THING_SCALE
+ * l $line_count
+ * l.x0 l.y0 l.x1 l.y1
+ * (...) repeated $line_count times
+ * t $thing_count
+ * t[0].x t[0].y t[0].*
+ * (...) repeated $thing_count times
  */
 static int
 BAS_ExportPlan(const char path[96])
 {
+	size_t i;
 	FILE *output;
 	WRITE_I("Writing to file...");
 	output = fopen(path, "w");
@@ -696,6 +704,31 @@ BAS_ExportPlan(const char path[96])
 		return 1;
 	}
 	fprintf(output, "Basilisk 0\n");
+	fprintf(output, "%d %d\n", CELL_SCALE, THING_SCALE);
+	fprintf(output, "l %d\n", line_count);
+	for (i = 0; i < line_count; i++)
+	{
+		struct BAS_Line line = lines[i];
+		fprintf(
+			output,
+			"%d %d %d %d\n",
+			line.cellnodeposition[0][0],
+			line.cellnodeposition[0][1],
+			line.cellnodeposition[1][0],
+			line.cellnodeposition[1][1]
+		);
+	}
+	fprintf(output, "t %d\n", thing_count);
+	for (i = 0; i < thing_count; i++)
+	{
+		struct BAS_Thing thing = things[i];
+		fprintf(
+			output,
+			"%d %d\n",
+			thing.thingposition[0],
+			thing.thingposition[1]
+		);
+	}
 	return 0;
 }
 

@@ -729,6 +729,7 @@ BAS_ExportPlan(const char path[96])
 			thing.thingposition[1]
 		);
 	}
+	fclose(output);
 	return 0;
 }
 

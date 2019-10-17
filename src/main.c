@@ -20,24 +20,26 @@
  * Define the editor
  */
 #define BASILISK_VERSION "0.0.1"
-#define BAS_NO_SUCH_VERTEX -1
-#define BAS_NO_SUCH_LINE -1
-#define BAS_NO_SUCH_ROOM -1
-#define BAS_NO_SUCH_THING -1
-#define CURSOR_ARROW 0
-#define CURSOR_CROSSHAIR 1
-#define CURSOR_HAND 2
-#define CURSOR_CROSSBONES 3
-#define CELL_SCALE 32
-#define THING_SCALE (CELL_SCALE/4)
+enum CURSOR_INDEX
+{
+	CURSOR_ARROW = 0,
+	CURSOR_CROSSHAIR,
+	CURSOR_HAND,
+	CURSOR_CROSSBONES,
+	CURSOR_COUNT
+};
+static char statusline[2][128];
+static const int CELL_SCALE            = 32;
+static const int THING_SCALE           = (CELL_SCALE/4);
+static const int BAS_NO_SUCH_ROOM      = -1;
+static const int BAS_NO_SUCH_THING     = -1;
 static const int NORMAL_LENGTH         = 4;
 static const int NORMAL_COLOUR[3]      = {200, 0,   150};
-static int CROSSHAIR_COLOUR[3]         = {200, 200, 200};
+static const int CROSSHAIR_COLOUR[3]   = {200, 200, 200};
 static const SDL_Color TEXT_BACKGROUND = {0, 0, 0, 255};
 static const SDL_Color TEXT_COLOUR     = {255, 255, 255, 255};
-static char statusline[2][128];
 static const char* const FONT_PATH     = "data/default.ttf";
-static SDL_Cursor* cursorheap[4];
+static SDL_Cursor* cursorheap[CURSOR_COUNT];
 static TTF_Font* font_default;
 static TTF_Font* font_textinput;
 static SDL_Texture *basilisk_texture = NULL;
